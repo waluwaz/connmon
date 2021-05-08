@@ -952,6 +952,7 @@ Run_PingTest_1(){
 	pingfile=/tmp/pingresult.txt
 	resultfile=/tmp/ping-result.txt
 	pingduration="$(PingDuration check)"
+	pingduration="300"
 	pingtarget="$(PingServer check)"
 	pingtargetip=""
 	completepingtarget=""
@@ -999,7 +1000,9 @@ Run_PingTest_1(){
 	fi
 	
 	ping -w "$pingduration" "$pingtargetip" > "$pingfile"
-	
+#	ping -w 300 "$pingtargetip" > "$pingfile"
+
+
 	if [ "$stoppedqos" = "true" ]; then
 		if [ "$(nvram get qos_enable)" -eq 1 ] && [ "$(nvram get qos_type)" -eq 1 ]; then
 			iptables -D OUTPUT -p icmp -j MARK --set-xmark 0x80000000/0xC0000000 2>/dev/null
