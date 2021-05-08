@@ -921,8 +921,10 @@ WriteSql_ToFile(){
 }
 
 Run_PingTest(){
+	Run_PingTest_1
 	Run_PingTest_1 1.1.1.1
 	Run_PingTest_1 8.8.8.8
+	Run_PingTest_1 9.9.9.9
 	Run_PingTest_1 10.161.9.129
 	Run_PingTest_1 212.68.211.45
 }
@@ -970,8 +972,11 @@ Run_PingTest_1(){
 		pingtargetip="$(dig +short +answer "$pingtarget" | head -n 1)"
 		completepingtarget="$pingtarget ($pingtargetip)"
 	else
-#		pingtargetip="$pingtarget"
-#		completepingtarget="$pingtarget"
+		pingtargetip="$pingtarget"
+		completepingtarget="$pingtarget"
+	fi
+
+	if  expr "$pingtarget_1" : '[0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*$' >/dev/null 2>&1; then
 		pingtargetip="$pingtarget_1"
 		completepingtarget="$pingtarget_1"
 	fi
