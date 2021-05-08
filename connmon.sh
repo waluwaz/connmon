@@ -924,8 +924,8 @@ Run_PingTest(){
 	Run_PingTest_1
 	Run_PingTest_1 8.8.8.8
 	Run_PingTest_1 9.9.9.9
-	Run_PingTest_1 10.161.9.129
 	Run_PingTest_1 212.68.211.45
+	Run_PingTest_1 10.161.9.129
 }
 
 Run_PingTest_1(){
