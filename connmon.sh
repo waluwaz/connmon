@@ -921,6 +921,15 @@ WriteSql_ToFile(){
 }
 
 Run_PingTest(){
+	Run_PingTest_1 1.1.1.1
+	Run_PingTest_1 8.8.8.8
+	Run_PingTest_1 10.161.9.129
+	Run_PingTest_1 212.68.211.45
+}
+
+Run_PingTest_1(){
+	pingtarget_1="$1"
+
 	if [ ! -f /opt/bin/xargs ]; then
 		Print_Output true "Installing findutils from Entware"
 		opkg update
@@ -961,8 +970,10 @@ Run_PingTest(){
 		pingtargetip="$(dig +short +answer "$pingtarget" | head -n 1)"
 		completepingtarget="$pingtarget ($pingtargetip)"
 	else
-		pingtargetip="$pingtarget"
-		completepingtarget="$pingtarget"
+#		pingtargetip="$pingtarget"
+#		completepingtarget="$pingtarget"
+		pingtargetip="$pingtarget_1"
+		completepingtarget="$pingtarget_1"
 	fi
 	
 	stoppedqos="false"
