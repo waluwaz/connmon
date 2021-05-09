@@ -1057,9 +1057,9 @@ Run_PingTest_1(){
 #         pkt_rec="$(echo "$text" | cut -f2 -d"," | cut -f2 -d" ")" 
 #       echo $pkt_trans                                                                              
 #       echo $pkt_rec                                                                                
-#		pkt_trans="$(tail -n 2 "$pingfile" | head -n 1 | cut -f1 -d"," | cut -f1 -d" "
-#		  pkt_rec="$(tail -n 2 "$pingfile" | head -n 1 | cut -f2 -d"," | cut -f2 -d" "
-#       linequal="$(echo "$pkt_rec" "$pkt_trans" | awk '{printf "%4.2f\n",100*$1/$2}')"                  
+		pkt_trans="$(tail -n 2 "$pingfile" | head -n 1 | cut -f1 -d"," | cut -f1 -d" ")"
+		  pkt_rec="$(tail -n 2 "$pingfile" | head -n 1 | cut -f2 -d"," | cut -f2 -d" ")"
+       linequal="$(echo "$pkt_rec" "$pkt_trans" | awk '{printf "%4.2f\n",100*$1/$2}')"                  
 #        echo $linequal
 	fi
 	
