@@ -922,8 +922,8 @@ WriteSql_ToFile(){
 
 Run_PingTest(){
 	Run_PingTest_1
-	Run_PingTest_1 1.1.1.1
 	Run_PingTest_1 8.8.8.8
+	Run_PingTest_1 1.1.1.1
 #	Run_PingTest_1 9.9.9.9
 	Run_PingTest_1 212.68.211.45
 	Run_PingTest_1 109.88.204.37
