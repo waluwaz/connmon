@@ -922,10 +922,11 @@ WriteSql_ToFile(){
 
 Run_PingTest(){
 	Run_PingTest_1
+	Run_PingTest_1 1.1.1.1
 	Run_PingTest_1 8.8.8.8
-	Run_PingTest_1 9.9.9.9
+#	Run_PingTest_1 9.9.9.9
 	Run_PingTest_1 212.68.211.45
-	Run_PingTest_1 10.161.9.129
+	Run_PingTest_1 109.88.204.37
 }
 
 Run_PingTest_1(){
@@ -952,7 +953,9 @@ Run_PingTest_1(){
 	pingfile=/tmp/pingresult.txt
 	resultfile=/tmp/ping-result.txt
 	pingduration="$(PingDuration check)"
-	pingduration="300"
+#	duration is taken from the UI BUT seconds are multiplied by 10
+	pingduration=$(( pingduration*10 ))
+	
 	pingtarget="$(PingServer check)"
 	pingtargetip=""
 	completepingtarget=""
@@ -1000,8 +1003,7 @@ Run_PingTest_1(){
 	fi
 	
 	ping -w "$pingduration" "$pingtargetip" > "$pingfile"
-#	ping -w 300 "$pingtargetip" > "$pingfile"
-
+#	The duration is hardcoded above
 
 	if [ "$stoppedqos" = "true" ]; then
 		if [ "$(nvram get qos_enable)" -eq 1 ] && [ "$(nvram get qos_type)" -eq 1 ]; then
