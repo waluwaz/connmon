@@ -1054,6 +1054,18 @@ WriteSql_ToFile(){
 }
 
 Run_PingTest(){
+	Run_PingTest_1
+	Run_PingTest_1 8.8.8.8
+#	Run_PingTest_1 1.1.1.1
+#	Run_PingTest_1 9.9.9.9
+	Run_PingTest_1 212.68.211.45
+#	Run_PingTest_1 109.88.204.37
+}
+
+Run_PingTest_1(){
+	pingtarget_1="$1"
+
+
 	if [ ! -f /opt/bin/xargs ]; then
 		Print_Output true "Installing findutils from Entware"
 		opkg update
@@ -1075,6 +1087,11 @@ Run_PingTest(){
 	pingfile=/tmp/pingfile.txt
 	resultfile="$SCRIPT_WEB_DIR/ping-result.txt"
 	pingduration="$(PingDuration check)"
+
+#	duration is taken from the UI BUT seconds are multiplied by 10
+	pingduration=$(( pingduration*10+3 ))
+	
+
 	pingtarget="$(PingServer check)"
 	pingtargetip=""
 	completepingtarget=""
@@ -1092,6 +1109,13 @@ Run_PingTest(){
 		pingtargetip="$pingtarget"
 		completepingtarget="$pingtarget"
 	fi
+
+
+	if  expr "$pingtarget_1" : '[0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*$' >/dev/null 2>&1; then
+		pingtargetip="$pingtarget_1"
+		completepingtarget="$pingtarget_1"
+	fi
+
 
 	stoppedqos="false"
 	if [ "$(ExcludeFromQoS check)" = "true" ]; then
@@ -1112,6 +1136,7 @@ Run_PingTest(){
 	fi
 
 	ping -w "$pingduration" "$pingtargetip" > "$pingfile"
+#	The duration is hardcoded above
 
 	if [ "$stoppedqos" = "true" ]; then
 		if [ "$(nvram get qos_enable)" -eq 1 ] && [ "$(nvram get qos_type)" -eq 1 ]; then
@@ -3980,3 +4005,4 @@ case "$1" in
 		exit 1
 	;;
 esac
+
