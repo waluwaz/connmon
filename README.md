@@ -2,6 +2,16 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/91af8db9cd354643a8ef6a7117be90fb)](https://www.codacy.com/app/jackyaz/connmon?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jackyaz/connmon&amp;utm_campaign=Badge_Grade)
 ![Shellcheck](https://github.com/jackyaz/connmon/actions/workflows/shellcheck.yml/badge.svg)
 
+THIS IS AN EXPERIMENT BUILDING UPON THE INCREDIBLE WORK OF JACKYAZ. IT ALLOWS PINGING SEVERAL SERVERS, not always the same. It also allows running ping for more than the maximum duration in Jack's version.
+
+There ware some hardcoded ping targets, plus the target defined in the Web UI
+The whole thing is repeated as often as defined in the Web UI (e.g. cron), just as with Jack's version.
+Each target is pinged for a duration that is indirectly derived from the value in the Web UI: pingduration=$(( pingduration*10+3 ))    (so define 22 in the UI and get 223 seconds).
+I run the whole thing every 12 Minutes and it gives me almost uninterrupted monitoring 24/7.
+
+ALL CREDITS go to Jack, all bugs to me.
+
+
 ## v3.0.2
 ### Updated on 2022-01-06
 ## About
